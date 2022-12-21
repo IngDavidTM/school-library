@@ -1,9 +1,9 @@
 require_relative 'nameable'
 
 class Decorator < Nameable
-  def initialize
+  def initialize(nameable)
     super()
-    @nameable = Nameable.new
+    @nameable = nameable
   end
 
   def correct_name
