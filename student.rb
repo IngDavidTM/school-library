@@ -23,4 +23,3 @@ puts student1.name
 puts student1.age
 puts student1.can_use_services?
 puts student1.play_hooky
-puts student1.classroom
