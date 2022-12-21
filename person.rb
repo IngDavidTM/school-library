@@ -30,8 +30,8 @@ class Person < Nameable
   def of_age?
     @age >= 18
   end
-  
-  def add_rental (rental)
+
+  def add_rental(rental)
     @rentals << rental
     rental.person = self
   end
