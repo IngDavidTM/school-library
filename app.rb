@@ -40,6 +40,7 @@ class App
       action = ACTIONS[option]
 
       if action == :break
+        puts 'Thank you for using this app!'
         break
       elsif action
         send(action)
@@ -128,6 +129,3 @@ class App
     end
   end
 end
-
-app = App.new
-puts app.select
