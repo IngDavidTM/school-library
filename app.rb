@@ -18,7 +18,7 @@ class App
     puts 'Welcome to School Library App!'
     @books = []
     @people = []
-    @rentals = []
+    @rental = []
   end
 
   def options
@@ -37,7 +37,7 @@ class App
     loop do
       options
       option = gets.chomp.to_i
-      action = ACTIONS[option]
+      action = action[option]
 
       if action == :break
         puts 'Thank you for using this app!'
@@ -125,7 +125,7 @@ class App
     person_id = gets.chomp.to_i
     puts 'Rentals:'
     @rentals.each do |object|
-      puts "Date: #{object.date}, Book '#{object.book.title}' by #{object.book.author}" if object.person.id == person_id
+      puts "Date: #{object.date}, Book '#{object.book.title}' by #{object.book.author}" if object.person.id == people_id
     end
   end
 end
