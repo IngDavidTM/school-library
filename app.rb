@@ -1,5 +1,6 @@
 require_relative 'student'
 require_relative 'teacher'
+require_relative 'book'
 
 ACTIONS = {
   1 => :list_books,
@@ -48,7 +49,9 @@ class App
   end
 
   def list_books
-    puts 'list books'
+    @books.each do |object|
+      puts "Title: '#{object.title}', Author: #{object.author}"
+    end
   end
 
   def list_people
@@ -87,6 +90,15 @@ class App
       puts 'Error: Invalid number, try again'
       send(:create_person)
     end
+  end
+
+  def create_book
+    print 'Title: '
+    book_title = gets.chomp.to_s
+    print 'Author: '
+    book_author = gets.chomp.to_s
+    @books.push(Book.new(book_title, book_author))
+    puts 'Book created successfully'
   end
 end
 
