@@ -17,9 +17,3 @@ class Student < Person
     classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
-
-student1 = Student.new(3, name: 'Juan', parent_permission: true)
-puts student1.name
-puts student1.age
-puts student1.can_use_services?
-puts student1.play_hooky

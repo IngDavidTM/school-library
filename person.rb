@@ -36,10 +36,3 @@ class Person < Nameable
     rental.person = self
   end
 end
-
-person1 = Person.new(13, name: 'Lola', parent_permission: false)
-puts person1.name
-puts person1.age
-puts person1.id
-puts person1.can_use_services?
-puts person1.correct_name
