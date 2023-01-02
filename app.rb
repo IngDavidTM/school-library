@@ -3,6 +3,7 @@ require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
 require_relative './functionalities/options'
+require_relative './functionalities/list_books'
 
 ACTIONS = {
   1 => :list_books,
@@ -40,9 +41,7 @@ class App
   end
 
   def list_books
-    @books.each do |object|
-      puts "Title: '#{object.title}', Author: #{object.author}"
-    end
+    ListBooks.list(@books)
   end
 
   def list_people
