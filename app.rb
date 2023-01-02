@@ -52,12 +52,12 @@ class App
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     option_person = gets.chomp.to_i
+    print 'Age: '
+    person_age = gets.chomp.to_i
+    print 'Name: '
+    person_name = gets.chomp.to_s
     case option_person
     when 1
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s
       print 'Has parent permission? [Y/N]: '
       person_permission = gets.chomp.to_s
       if person_permission.capitalize == 'N'
@@ -67,10 +67,6 @@ class App
       end
       puts 'Person created successfully'
     when 2
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s
       print 'Specialization: '
       person_specialization = gets.chomp.to_s
       @people.push(Teacher.new(person_age, person_specialization, name: person_name))
