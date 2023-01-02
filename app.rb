@@ -5,6 +5,7 @@ require_relative 'rental'
 require_relative './functionalities/options'
 require_relative './functionalities/list_books'
 require_relative './functionalities/list_people'
+require_relative './functionalities/list_rentals'
 
 ACTIONS = {
   1 => :list_books,
@@ -104,11 +105,6 @@ class App
   end
 
   def list_rentals
-    print 'ID of person: '
-    person_id = gets.chomp.to_i
-    puts 'Rentals:'
-    @rentals.each do |object|
-      puts "Date: #{object.date}, Book '#{object.book.title}' by #{object.book.author}" if object.person.id == person_id
-    end
+    ListRentals.list(@rentals)
   end
 end
