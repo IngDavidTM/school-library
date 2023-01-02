@@ -4,6 +4,7 @@ require_relative 'book'
 require_relative 'rental'
 require_relative './functionalities/options'
 require_relative './functionalities/list_books'
+require_relative './functionalities/list_people'
 
 ACTIONS = {
   1 => :list_books,
@@ -45,9 +46,7 @@ class App
   end
 
   def list_people
-    @people.each do |object|
-      puts "[#{object.class}] Name: #{object.name}, ID: #{object.id}, Age: #{object.age}"
-    end
+    ListPeople.list(@people)
   end
 
   def create_person
