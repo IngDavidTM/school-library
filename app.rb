@@ -2,6 +2,10 @@ require_relative 'student'
 require_relative 'teacher'
 require_relative 'book'
 require_relative 'rental'
+require_relative './functionalities/options'
+require_relative './functionalities/list_books'
+require_relative './functionalities/list_people'
+require_relative './functionalities/list_rentals'
 
 ACTIONS = {
   1 => :list_books,
@@ -21,21 +25,9 @@ class App
     @rentals = []
   end
 
-  def options
-    puts ''
-    puts 'Please choose an option by enterin a number:'
-    puts '1 - List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 - Create a book'
-    puts '5 - Create a rental'
-    puts '6 - List all rentals for a given person id'
-    puts '7 - Exit'
-  end
-
   def select
     loop do
-      options
+      Options.display
       option = gets.chomp.to_i
       action = ACTIONS[option]
 
@@ -51,26 +43,22 @@ class App
   end
 
   def list_books
-    @books.each do |object|
-      puts "Title: '#{object.title}', Author: #{object.author}"
-    end
+    ListBooks.list(@books)
   end
 
   def list_people
-    @people.each do |object|
-      puts "[#{object.class}] Name: #{object.name}, ID: #{object.id}, Age: #{object.age}"
-    end
+    ListPeople.list(@people)
   end
 
   def create_person
     print 'Do you want to create a student (1) or a teacher (2)? [Input the number]: '
     option_person = gets.chomp.to_i
+    print 'Age: '
+    person_age = gets.chomp.to_i
+    print 'Name: '
+    person_name = gets.chomp.to_s
     case option_person
     when 1
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s
       print 'Has parent permission? [Y/N]: '
       person_permission = gets.chomp.to_s
       if person_permission.capitalize == 'N'
@@ -80,10 +68,6 @@ class App
       end
       puts 'Person created successfully'
     when 2
-      print 'Age: '
-      person_age = gets.chomp.to_i
-      print 'Name: '
-      person_name = gets.chomp.to_s
       print 'Specialization: '
       person_specialization = gets.chomp.to_s
       @people.push(Teacher.new(person_age, person_specialization, name: person_name))
@@ -121,11 +105,6 @@ class App
   end
 
   def list_rentals
-    print 'ID of person: '
-    person_id = gets.chomp.to_i
-    puts 'Rentals:'
-    @rentals.each do |object|
-      puts "Date: #{object.date}, Book '#{object.book.title}' by #{object.book.author}" if object.person.id == person_id
-    end
+    ListRentals.list(@rentals)
   end
 end
